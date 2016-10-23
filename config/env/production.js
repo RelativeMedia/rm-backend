@@ -6,8 +6,12 @@
  */
 
 module.exports = {
-  port: 80,
+  port: 3000,
   log: {
     level: 'info'
+  },
+  models: {
+    connection: 'disk',
+    migrate: 'alter'
   }
 };
