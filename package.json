@@ -21,10 +21,13 @@
     "sails-service-storage": "^3.2.1"
   },
   "devDependencies": {
-    "esdoc": "0.4.3",
+    "barrels": "^1.6.4",
     "chai": "3.4.1",
+    "esdoc": "0.4.3",
     "istanbul": "0.4.2",
     "mocha": "2.3.4",
+    "nodemon": "^1.11.0",
+    "sails-disk": "^0.10.10",
     "sails-memory": "0.10.5",
     "sinon": "1.17.2"
   },
@@ -32,7 +35,7 @@
     "clean": "rm -rf ./.tmp",
     "debug": "node debug app.js",
     "docs": "esdoc -c esdoc.json",
-    "start": "node app.js",
+    "start": "./node_modules/.bin/nodemon -i .tmp app.js",
     "test": "istanbul cover _mocha"
   }
 }
