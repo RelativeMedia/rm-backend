@@ -7,5 +7,10 @@
  */
 
 module.exports = {
-  routes: {}
+  routes: {
+    'POST /v1/email/send': {
+      controller: 'EmailController',
+      action: 'send'
+    }
+  }
 };
