@@ -11,7 +11,7 @@ module.exports = {
     level: 'info'
   },
   models: {
-    connection: 'disk',
+    connection: 'mysql',
     migrate: 'alter'
   }
 };
