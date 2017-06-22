@@ -9,6 +9,8 @@ module.exports = {
     mailer: {
       from: 'no-reply@changeme.com',
       to: 'someone@changeme.com',
+      subject: '[DEV] Some Subject Prepended',
+      subjectPrepend: true,
       provider: {
         auth: {
           api_user: 'CHANGEME',

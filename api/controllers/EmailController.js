@@ -30,10 +30,17 @@ module.exports = {
       })
     })
     .then((email) => {
+
+      const subject = () => {
+        return (sails.config.services.mailer.subjectPrepend)
+          ? sails.config.services.mailer.subject + ' | ' + email.subject
+          : email.subject || sails.config.services.mailer.subject
+      }
+
       return MailerService()
         .send({
           to: sails.config.services.mailer.to,
-          subject: contact.subject || sails.config.services.mailer.subject,
+          subject: subject(),
           text: contact.message
         })
         .then((status) => {
