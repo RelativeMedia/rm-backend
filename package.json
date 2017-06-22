@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "main": "app.js",
   "dependencies": {
-    "barrels": "^1.6.4",
     "hoek": "^4.1.0",
     "lodash": "^4.16.4",
     "passport": "^0.3.2",
@@ -12,9 +11,7 @@
     "pluralize": "^3.0.0",
     "rc": "1.1.6",
     "sails": "0.11.4",
-    "sails-disk": "^0.10.10",
     "sails-hook-cron": "^2.2.0",
-    "sails-memory": "^0.10.5",
     "sails-hook-sentry": "^2.0.0-beta",
     "sails-mysql": "^0.11.5",
     "sails-service-cipher": "^3.2.1",
