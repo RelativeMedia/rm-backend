@@ -10,53 +10,43 @@ module.exports = {
     const contact = req.body;
     const ipAddress = req.headers['x-forwarder-for'] || (req.connection && req.connection.remoteAddress);
 
+    sails.log.debug(contact);
+
     Email
     .find({ ipAddress: ipAddress })
     .then((email) => {
-
-      if (email.length >= 5) {
-        sails.log.error('User IP has requested to contact too many times', email);
-        return res.badRequest();
-      } else {
-        Email
-        .create({
-          firstName: contact.firstName,
-          lastName: contact.lastName,
-          'email': contact.email,
-          'phoneNumber': contact.phoneNumber,
-          'message': contact.message,
-          'subject': contact.subject,
-          'ipAddress': ipAddress
+      return Email
+      .create({
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        email: contact.email,
+        phoneNumber: contact.phoneNumber,
+        message: contact.message,
+        subject: contact.subject,
+        ipAddress: ipAddress
+      })
+      .then((email) => {
+        return email;
+      })
+    })
+    .then((email) => {
+      return MailerService()
+        .send({
+          to: sails.config.services.mailer.to,
+          subject: contact.subject || sails.config.services.mailer.subject,
+          text: contact.message
         })
-        .then((email) => {
-          res.ok();
-          return email;
+        .then((status) => {
+          return Email.update({ id: email.id }, { status: status.message })
         })
-        .then((email) => {
-          MailerService
-          .send({
-            to: sails.config.services.mailer.to,
-            text: contact.message
-          })
-          .then((status) => {
-
-            Email
-            .update({ id: email.id }, { status: status.message })
-            .catch((err) => {
-              sails.log.error(err);
-            });
-
-          })
-          .catch((err) => {
-            sails.log.error(err);
-            return res.negotiate(err);
-          });
-        })
-        .catch((err) => {
-          sails.log.error(err);
-          return res.negotiate(err);
-        });
-      }
+    })
+    .then((email) => {
+      sails.log.debug(email);
+      return res.ok(email);
+    })
+    .catch((err) => {
+      sails.log.error(err);
+      return res.negotiate(err)
     });
   }
 };
