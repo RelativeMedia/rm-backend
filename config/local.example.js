@@ -1,5 +1,8 @@
 const pkg = require('../package.json');
 module.exports = {
+  cors: {
+    origin: 'https://relative.media',
+  },
   services: {
     cipher: {
       jwt: {

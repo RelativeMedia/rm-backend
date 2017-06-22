@@ -1,6 +1,6 @@
 {
   "name": "rm-backend",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a sails.js 0.11x powered API backend for the relative.media website.",
   "author": {
     "name": "Mike DeVita",
