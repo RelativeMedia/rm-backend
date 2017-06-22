@@ -1,6 +1,11 @@
 {
-  "name": "sails-rest-api",
+  "name": "rm-backend",
   "version": "0.1.0",
+  "description": "a sails.js 0.11x powered API backend for the relative.media website.",
+  "author": {
+    "name": "Mike DeVita",
+    "email": "mike@relative.media"
+  },
   "main": "app.js",
   "dependencies": {
     "hoek": "^4.1.0",
