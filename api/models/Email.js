@@ -15,7 +15,10 @@ module.exports = {
       required: true
     },
     phoneNumber: {
-      type: 'string'
+      type: 'string',
+      required: true,
+      numeric: true,
+      regex: /^[2-9]\d\d[2-9]\d{6}/
     },
     firstName: {
       type: 'string',
