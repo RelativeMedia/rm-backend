@@ -1,8 +1,8 @@
 "use strict";
 
 const cipher = require('sails-service-cipher');
-const config = require('../../config/services/cipher');
+const _      = require('lodash');
 
-module.exports = {
-  jwt: cipher('jwt', config.services.cipher.jwt)
-};
+module.exports = (config) => ({
+    jwt: cipher('jwt', _.merge({}, sails.config.services.cipher.jwt, config))
+});

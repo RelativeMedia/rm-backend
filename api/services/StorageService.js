@@ -1,6 +1,6 @@
 "use strict";
 
 const storage = require('sails-service-storage');
-const config = require('../../config/services/storage');
+const _       = require('lodash');
 
-module.exports = storage('Amazon', config.services.storage);
+module.exports = (config) => storage('Amazon', _.merge({}, sails.config.services.storage, config));

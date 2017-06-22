@@ -1,8 +1,8 @@
 "use strict";
 
 const hash = require('sails-service-hash');
-const config = require('../../config/services/hash');
+const _    = require('lodash');
 
-module.exports = {
-  bcrypt: hash('bcrypt', config.services.hash.bcrypt)
-};
+module.exports = (config) => ({
+  bcrypt: hash('bcrypt', _.merge({}, sails.config.services.hash.bcrypt, config))
+});

@@ -29,7 +29,7 @@ module.exports = {
     User
       .create(values)
       .then(user => {
-        return {token: CipherService.jwt.encodeSync({id: user.id}), user: user}
+        return {token: CipherService().jwt.encodeSync({id: user.id}), user: user}
       })
       .then(res.created)
       .catch(res.negotiate);
@@ -62,10 +62,10 @@ module.exports = {
   refresh_token(req, res) {
     if (!req.param('token')) return res.badRequest(null, {message: 'You must provide token parameter'});
 
-    const oldDecoded = CipherService.jwt.decodeSync(req.param('token'));
+    const oldDecoded = CipherService().jwt.decodeSync(req.param('token'));
 
     res.ok({
-      token: CipherService.jwt.encodeSync({id: oldDecoded.id})
+      token: CipherService().jwt.encodeSync({id: oldDecoded.id})
     });
   }
 };

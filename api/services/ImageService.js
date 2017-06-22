@@ -1,6 +1,6 @@
 "use strict";
 
 const image = require('sails-service-image');
-const config = require('../../config/services/image');
+const _     = require('lodash');
 
-module.exports = image('GM', config.services.image);
+module.exports = (config) => image('GM', _.merge({}, sails.config.services.image, config));
