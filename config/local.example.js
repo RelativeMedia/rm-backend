@@ -6,7 +6,16 @@ module.exports = {
         secretKey: 'CHANGEME'
       }
     },
-    mailer: {},
+    mailer: {
+      from: 'no-reply@changeme.com',
+      to: 'someone@changeme.com',
+      provider: {
+        auth: {
+          api_user: 'CHANGEME',
+          api_key: 'CHANGEME'
+        }
+      }
+    },
     hash: {
       bcrypt: {}
     },
